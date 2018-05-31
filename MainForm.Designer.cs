@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.GameLogs = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.FightButton = new System.Windows.Forms.Button();
             this.Player2HPBar = new System.Windows.Forms.ProgressBar();
             this.Player1HPBar = new System.Windows.Forms.ProgressBar();
             this.Player1NameLabel = new System.Windows.Forms.Label();
             this.Player2NameLabel = new System.Windows.Forms.Label();
             this.Player1HPBox = new System.Windows.Forms.TextBox();
             this.Player2HPBox = new System.Windows.Forms.TextBox();
-            this.ButtonHead = new System.Windows.Forms.Button();
             this.ButtonTorso = new System.Windows.Forms.Button();
             this.ButtonLegs = new System.Windows.Forms.Button();
+            this.ButtonHead = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // GameLogs
@@ -46,18 +46,18 @@
             this.GameLogs.FormattingEnabled = true;
             this.GameLogs.Location = new System.Drawing.Point(12, 12);
             this.GameLogs.Name = "GameLogs";
-            this.GameLogs.Size = new System.Drawing.Size(128, 381);
+            this.GameLogs.Size = new System.Drawing.Size(178, 381);
             this.GameLogs.TabIndex = 0;
             // 
-            // button1
+            // FightButton
             // 
-            this.button1.Location = new System.Drawing.Point(423, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(102, 43);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Fight!";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Start_Fight);
+            this.FightButton.Location = new System.Drawing.Point(423, 12);
+            this.FightButton.Name = "FightButton";
+            this.FightButton.Size = new System.Drawing.Size(102, 43);
+            this.FightButton.TabIndex = 1;
+            this.FightButton.Text = "Fight!";
+            this.FightButton.UseVisualStyleBackColor = true;
+            this.FightButton.Click += new System.EventHandler(this.Start_Fight);
             // 
             // Player2HPBar
             // 
@@ -107,17 +107,6 @@
             this.Player2HPBox.TabIndex = 7;
             this.Player2HPBox.TextChanged += new System.EventHandler(this.Player2HPBox_TextChanged);
             // 
-            // ButtonHead
-            // 
-            this.ButtonHead.Location = new System.Drawing.Point(280, 130);
-            this.ButtonHead.Name = "ButtonHead";
-            this.ButtonHead.Size = new System.Drawing.Size(167, 70);
-            this.ButtonHead.TabIndex = 8;
-            this.ButtonHead.Text = "Head";
-            this.ButtonHead.UseVisualStyleBackColor = true;
-            this.ButtonHead.Visible = false;
-            this.ButtonHead.Click += new System.EventHandler(this.ButtonHead_Click);
-            // 
             // ButtonTorso
             // 
             this.ButtonTorso.Location = new System.Drawing.Point(280, 206);
@@ -140,6 +129,17 @@
             this.ButtonLegs.Visible = false;
             this.ButtonLegs.Click += new System.EventHandler(this.ButtonLegs_Click);
             // 
+            // ButtonHead
+            // 
+            this.ButtonHead.Location = new System.Drawing.Point(280, 130);
+            this.ButtonHead.Name = "ButtonHead";
+            this.ButtonHead.Size = new System.Drawing.Size(167, 70);
+            this.ButtonHead.TabIndex = 8;
+            this.ButtonHead.Text = "Head";
+            this.ButtonHead.UseVisualStyleBackColor = true;
+            this.ButtonHead.Visible = false;
+            this.ButtonHead.Click += new System.EventHandler(this.ButtonHead_Click);
+            // 
             // FightClubMainForm
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
@@ -155,7 +155,7 @@
             this.Controls.Add(this.Player1NameLabel);
             this.Controls.Add(this.Player1HPBar);
             this.Controls.Add(this.Player2HPBar);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.FightButton);
             this.Controls.Add(this.GameLogs);
             this.Name = "FightClubMainForm";
             this.Text = "Fight Club";
@@ -167,7 +167,7 @@
         #endregion
 
         private System.Windows.Forms.ListBox GameLogs;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button FightButton;
         private System.Windows.Forms.ProgressBar Player2HPBar;
         private System.Windows.Forms.ProgressBar Player1HPBar;
         private System.Windows.Forms.Label Player1NameLabel;

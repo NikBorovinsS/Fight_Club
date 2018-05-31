@@ -44,32 +44,38 @@ namespace Fight_Club
 
         public string LogForBlock()
         {
-            GameLogs.Items.Add(GetTimeNow() + " - Hit was blocked.");
-            GameLogs.Items.Add("Round has ended");
-
             if (RoundCount % 2 == 0)
             {
+                GameLogs.Items.Add(GetTimeNow() + " - First player did blocked hit.");
+                GameLogs.Items.Add("Round has ended");
+
                 return (FirstPlayer.GetPlayerName() + FirstPlayer.GetPlayerHp().ToString());
             }
             else
             {
+                GameLogs.Items.Add(GetTimeNow() + " - Second player did blocked hit.");
+                GameLogs.Items.Add("Round has ended");
+
                 return (SecondPlayer.GetPlayerName() + SecondPlayer.GetPlayerHp().ToString());
             }
         }
 
         public string LogForWound()
         {
-            GameLogs.Items.Add(GetTimeNow() + " - Player has wounded.");
-            GameLogs.Items.Add("Round has ended");
-
             if (RoundCount % 2 == 0)
             {
+                GameLogs.Items.Add(GetTimeNow() + " - First player has wounded.");
+                GameLogs.Items.Add("Round has ended");
+
                 Player1HPBox.Text = FirstPlayer.GetPlayerHp() < 0 ? "0" : FirstPlayer.GetPlayerHp().ToString();
 
                 return (FirstPlayer.GetPlayerName() + FirstPlayer.GetPlayerHp().ToString());
             }
             else
             {
+                GameLogs.Items.Add(GetTimeNow() + " - Second player has wounded.");
+                GameLogs.Items.Add("Round has ended");
+
                 Player2HPBox.Text = SecondPlayer.GetPlayerHp() < 0 ? "0" : SecondPlayer.GetPlayerHp().ToString();
 
                 return (SecondPlayer.GetPlayerName() + SecondPlayer.GetPlayerHp().ToString());
@@ -80,7 +86,7 @@ namespace Fight_Club
         {
             if (RoundCount % 2 == 0)
             {
-                GameLogs.Items.Add(GetTimeNow() + " - Firts player was killed.");
+                GameLogs.Items.Add(GetTimeNow() + " - First player was killed.");
                 GameLogs.Items.Add("You lose");
 
                 Player1HPBox.Text = FirstPlayer.GetPlayerHp() < 0 ? "0" : FirstPlayer.GetPlayerHp().ToString();
@@ -98,6 +104,33 @@ namespace Fight_Club
             }
         }
 
+        private string GetAttackedPlayer()
+        {
+            if (RoundCount % 2 == 0)
+            {
+                return (FirstPlayer.GetPlayerName() + FirstPlayer.GetPlayerHp().ToString());
+            }
+            else 
+            {
+                return (SecondPlayer.GetPlayerName() + SecondPlayer.GetPlayerHp().ToString());
+            }
+        }
+
+        public string ProposeRestart()
+        {
+            RoundCount = 0;
+
+            
+
+            ButtonHead.Visible = false;
+            ButtonTorso.Visible = false;
+            ButtonLegs.Visible = false;
+
+            FightButton.Text = "Revenge!";
+
+            return GetAttackedPlayer();
+        }
+
         private void InitializeEvents()
         {
             FirstPlayer.Block += this.LogForBlock;
@@ -108,6 +141,9 @@ namespace Fight_Club
 
             FirstPlayer.Death += this.LogForDeath;
             SecondPlayer.Death += this.LogForDeath;
+
+            FirstPlayer.Death += this.ProposeRestart;
+            SecondPlayer.Death += this.ProposeRestart;
         }
 
         private void Start_Fight(object sender, EventArgs e)
@@ -181,13 +217,11 @@ namespace Fight_Club
         private int Hp;
         public const int MAX_HP = 100;
 
-        public delegate string BlockMethods();
-        public delegate string WoundMethods();
-        public delegate string DeathMethods();
+        public delegate string Methods();
 
-        public event BlockMethods Block;
-        public event WoundMethods Wound;
-        public event DeathMethods Death;
+        public event Methods Block;
+        public event Methods Wound;
+        public event Methods Death;
 
         public Player()
         {
