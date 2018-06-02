@@ -1,0 +1,11 @@
+F:\ISD Initiative Program\Fight_Club\bin\Release\Fight_Club.exe.config
+F:\ISD Initiative Program\Fight_Club\obj\Release\Interop.WMPLib.dll
+F:\ISD Initiative Program\Fight_Club\obj\Release\Fight_Club.csproj.ResolveComReference.cache
+F:\ISD Initiative Program\Fight_Club\bin\Release\Fight_Club.exe
+F:\ISD Initiative Program\Fight_Club\bin\Release\Fight_Club.pdb
+F:\ISD Initiative Program\Fight_Club\obj\Release\Fight_Club.FightClubMainForm.resources
+F:\ISD Initiative Program\Fight_Club\obj\Release\Fight_Club.Properties.Resources.resources
+F:\ISD Initiative Program\Fight_Club\obj\Release\Fight_Club.SettingsForm.resources
+F:\ISD Initiative Program\Fight_Club\obj\Release\Fight_Club.csproj.GenerateResource.Cache
+F:\ISD Initiative Program\Fight_Club\obj\Release\Fight_Club.exe
+F:\ISD Initiative Program\Fight_Club\obj\Release\Fight_Club.pdb

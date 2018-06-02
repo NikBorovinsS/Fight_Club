@@ -9,3 +9,4 @@ F:\ISD Initiative Program\Fight_Club\obj\Debug\Fight_Club.exe
 F:\ISD Initiative Program\Fight_Club\obj\Debug\Fight_Club.pdb
 F:\ISD Initiative Program\Fight_Club\obj\Debug\Interop.WMPLib.dll
 F:\ISD Initiative Program\Fight_Club\obj\Debug\Fight_Club.csproj.ResolveComReference.cache
+F:\ISD Initiative Program\Fight_Club\obj\Debug\Fight_Club.SettingsForm.resources

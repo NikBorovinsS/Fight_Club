@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using System.Configuration;
 
 namespace Fight_Club
 {
@@ -20,13 +21,37 @@ namespace Fight_Club
         private Player FirstPlayer;
         private Player SecondPlayer;
 
+        public SettingsForm SettingsForm;
+
         public FightClubMainForm()
         {
             InitializeComponent();
 
+            SettingsForm = new SettingsForm();
+            SettingsForm.ParentMainForm = this;
+
+            SettingsForm.VisibleChanged += this.SettingsClosed;
+
+            FirstPlayer = new Player();
+            SecondPlayer = new Player();
             //PlayAmbient();
 
             RoundCount = 0;
+        }
+
+        private void SettingsClosed(object sender, EventArgs e)
+        {
+            if (SettingsForm.Visible)
+            {
+                return;
+            }
+            else
+            {
+                if (SettingsForm.ChangeAccepted)
+                {
+                    ReadAllSettings();
+                }
+            }
         }
 
         private string GetTimeNow()
@@ -42,61 +67,79 @@ namespace Fight_Club
             wplayer.controls.play();
         }
 
-        public string LogForBlock()
+        public string LogForBlock(Object sender, HitMethodsEventArgs e)
         {
             if (RoundCount % 2 == 0)
             {
-                GameLogs.Items.Add(GetTimeNow() + " - First player did blocked hit.");
-                GameLogs.Items.Add("Round has ended");
+                GameLogs.Items.Add("First player did blocked hit.");
+                GameLogs.Items.Add(GetTimeNow() + " - Round has ended");
+
+                ++RoundCount;
+                GameLogs.Items.Add(GetTimeNow() + " - Round " + RoundCount.ToString());
+                GameLogs.Items.Add("You attack");
 
                 return (FirstPlayer.GetPlayerName() + FirstPlayer.GetPlayerHp().ToString());
             }
             else
             {
-                GameLogs.Items.Add(GetTimeNow() + " - Second player did blocked hit.");
-                GameLogs.Items.Add("Round has ended");
+                GameLogs.Items.Add("Second player did blocked hit.");
+                GameLogs.Items.Add(GetTimeNow() + " - Round has ended");
+
+                ++RoundCount;
+                GameLogs.Items.Add(GetTimeNow() + " - Round " + RoundCount.ToString());
+                GameLogs.Items.Add("You are defending yourself");
 
                 return (SecondPlayer.GetPlayerName() + SecondPlayer.GetPlayerHp().ToString());
             }
         }
 
-        public string LogForWound()
+        public string LogForWound(Object sender, HitMethodsEventArgs e)
         {
             if (RoundCount % 2 == 0)
             {
-                GameLogs.Items.Add(GetTimeNow() + " - First player has wounded.");
-                GameLogs.Items.Add("Round has ended");
+                GameLogs.Items.Add("First player has wounded in the " + FirstPlayer.LastInputBP.ToString()
+                    + " by " + ((int)FirstPlayer.LastInputBP).ToString());
+                GameLogs.Items.Add(GetTimeNow() + " - Round has ended");
 
                 Player1HPBox.Text = FirstPlayer.GetPlayerHp() < 0 ? "0" : FirstPlayer.GetPlayerHp().ToString();
+
+                ++RoundCount;
+                GameLogs.Items.Add(GetTimeNow() + " - Round " + RoundCount.ToString());
+                GameLogs.Items.Add("You attack");
 
                 return (FirstPlayer.GetPlayerName() + FirstPlayer.GetPlayerHp().ToString());
             }
             else
             {
-                GameLogs.Items.Add(GetTimeNow() + " - Second player has wounded.");
-                GameLogs.Items.Add("Round has ended");
+                GameLogs.Items.Add("Second player has wounded in the " + SecondPlayer.LastInputBP.ToString()
+                    + " by " + ((int)SecondPlayer.LastInputBP).ToString());
+                GameLogs.Items.Add(GetTimeNow() + " - Round has ended");
 
                 Player2HPBox.Text = SecondPlayer.GetPlayerHp() < 0 ? "0" : SecondPlayer.GetPlayerHp().ToString();
 
+                ++RoundCount;
+                GameLogs.Items.Add(GetTimeNow() + " - Round " + RoundCount.ToString());
+                GameLogs.Items.Add("You are defending yourself");
+
                 return (SecondPlayer.GetPlayerName() + SecondPlayer.GetPlayerHp().ToString());
             }
         }
 
-        public string LogForDeath()
+        public string LogForDeath(Object sender, HitMethodsEventArgs e)
         {
             if (RoundCount % 2 == 0)
             {
-                GameLogs.Items.Add(GetTimeNow() + " - First player was killed.");
-                GameLogs.Items.Add("You lose");
+                GameLogs.Items.Add("First player was killed.");
+                GameLogs.Items.Add(GetTimeNow() + " - You lose");
 
                 Player1HPBox.Text = FirstPlayer.GetPlayerHp() < 0 ? "0" : FirstPlayer.GetPlayerHp().ToString();
 
                 return (FirstPlayer.GetPlayerName() + FirstPlayer.GetPlayerHp().ToString());
             }
-            else 
+            else
             {
-                GameLogs.Items.Add(GetTimeNow() + " - Second player was killed.");
-                GameLogs.Items.Add("Congratulations! You won");
+                GameLogs.Items.Add("Second player was killed.");
+                GameLogs.Items.Add(GetTimeNow() + " - Congratulations! You won");
 
                 Player2HPBox.Text = SecondPlayer.GetPlayerHp() < 0 ? "0" : SecondPlayer.GetPlayerHp().ToString();
 
@@ -110,21 +153,25 @@ namespace Fight_Club
             {
                 return (FirstPlayer.GetPlayerName() + FirstPlayer.GetPlayerHp().ToString());
             }
-            else 
+            else
             {
                 return (SecondPlayer.GetPlayerName() + SecondPlayer.GetPlayerHp().ToString());
             }
         }
 
-        public string ProposeRestart()
+        public string ProposeRestart(Object sender, HitMethodsEventArgs e)
         {
             RoundCount = 0;
 
-            
+            GameLogs.Items.Clear();
 
             ButtonHead.Visible = false;
             ButtonTorso.Visible = false;
             ButtonLegs.Visible = false;
+
+            HeadOpp.Visible = false;
+            TorsoOpp.Visible = false;
+            LegsOpp.Visible = false;
 
             FightButton.Text = "Revenge!";
 
@@ -148,30 +195,77 @@ namespace Fight_Club
 
         private void Start_Fight(object sender, EventArgs e)
         {
-            FirstPlayer = new Player("Narrator");
-            SecondPlayer = new Player("Tyler");
+            ReadAllSettings();
 
             InitializeEvents();
 
             Player1NameLabel.Text = FirstPlayer.GetPlayerName();
             Player2NameLabel.Text = SecondPlayer.GetPlayerName();
 
-            Player1HPBox.Text = Player.MAX_HP.ToString();
-            Player2HPBox.Text = Player.MAX_HP.ToString();
+            Player1HPBox.Text = FirstPlayer.MAX_HP.ToString();
+            Player2HPBox.Text = FirstPlayer.MAX_HP.ToString();
 
             ButtonHead.Visible = true;
             ButtonTorso.Visible = true;
             ButtonLegs.Visible = true;
 
+            HeadOpp.Visible = true;
+            TorsoOpp.Visible = true;
+            LegsOpp.Visible = true;
+
             GameLogs.Items.Add(GetTimeNow() + " - Fight started!");
+
+            ++RoundCount;
+            if (RoundCount % 2 != 0)
+            {
+                GameLogs.Items.Add("Round " + RoundCount.ToString());
+                GameLogs.Items.Add("You attack");
+            }
+            else
+            {
+                GameLogs.Items.Add("Round " + RoundCount.ToString());
+                GameLogs.Items.Add("You are defending yourself");
+            }
         }
+
+        private void ReadAllSettings()
+        {
+            try
+            {
+                var appSettings = ConfigurationSettings.AppSettings;
+
+                if (appSettings.Count == 0)
+                {
+                    GameLogs.Items.Add("AppSettings is empty.");
+                }
+                else
+                {
+                    foreach (var key in appSettings.AllKeys)
+                    {
+                        switch (key)
+                        {
+                            case "FirstName": FirstPlayer.SetPlayerName(appSettings[key]);
+                                break;
+                            case "SecondName": SecondPlayer.SetPlayerName(appSettings[key]);
+                                break;
+                            case "Duration": FirstPlayer.SetMaxHP(Int32.Parse(appSettings[key]));
+                                SecondPlayer.SetMaxHP(Int32.Parse(appSettings[key]));
+                                Player1HPBar.Maximum = Int32.Parse(appSettings[key]);
+                                Player2HPBar.Maximum = Int32.Parse(appSettings[key]);
+                                break;
+                        }
+                    }
+                }
+            }
+            catch (ConfigurationException)
+            {
+                GameLogs.Items.Add("Error reading app settings");
+            }
+        }
+
 
         private void Round(BodyParts ChoosedPart)
         {
-            ++RoundCount;
-
-            GameLogs.Items.Add(GetTimeNow() + " - Round " + RoundCount.ToString());
-
             if (RoundCount % 2 != 0)
             {
                 SecondPlayer.SetBlock();
@@ -182,6 +276,7 @@ namespace Fight_Club
                 FirstPlayer.SetBlock(ChoosedPart);
                 FirstPlayer.GetHit(FirstPlayer.CalculateAttackedPart());
             }
+
         }
 
         private void ButtonHead_Click(object sender, EventArgs e)
@@ -201,12 +296,18 @@ namespace Fight_Club
 
         private void Player1HPBox_TextChanged(object sender, EventArgs e)
         {
-            Player1HPBar.Value = Int32.Parse(Player1HPBox.Text) < 0 ? 0: Int32.Parse(Player1HPBox.Text);
+            Player1HPBar.Value = Int32.Parse(Player1HPBox.Text) < 0 ? 0 : Int32.Parse(Player1HPBox.Text);
         }
 
         private void Player2HPBox_TextChanged(object sender, EventArgs e)
         {
             Player2HPBar.Value = Int32.Parse(Player2HPBox.Text) < 0 ? 0 : Int32.Parse(Player2HPBox.Text);
+        }
+
+        private void ButtonSettings_Click(object sender, EventArgs e)
+        {
+            this.Enabled = false;
+            SettingsForm.Show();
         }
     }
 
@@ -215,40 +316,38 @@ namespace Fight_Club
         private string Name;
         private BodyParts Blocked;
         private int Hp;
-        public const int MAX_HP = 100;
+        public int MAX_HP = 1;
 
-        public delegate string Methods();
+        public BodyParts LastInputBP;
 
-        public event Methods Block;
-        public event Methods Wound;
-        public event Methods Death;
-
-        public Player()
-        {
-            Hp = MAX_HP;
-        }
+        public Player() { }
         public Player(string PlayerName)
         {
             Name = PlayerName;
             Hp = MAX_HP;
         }
 
+        public void SetPlayerName(string SName)
+        {
+            Name = SName;
+        }
+
+        public void SetMaxHP(int MAXHP)
+        {
+            MAX_HP = MAXHP;
+            Hp = MAX_HP;
+        }
+
         public void GetHit(BodyParts AttackedPart)
         {
-            if (AttackedPart.Equals(Blocked))
-            {
-                Block();
-            }
-            else 
-            {
-                Hp -= (int)AttackedPart;
-                Wound();
+            HitMethodsEventArgs args = new HitMethodsEventArgs();
+            args.BodyId = AttackedPart;
+            args.TimeHit = DateTime.Now;
 
-                if (Hp <= 0)
-                {
-                    Death();
-                }
-            }
+            LastInputBP = AttackedPart;
+
+            OnHitMethods(args);
+
         }
 
         public void SetBlock()
@@ -295,5 +394,41 @@ namespace Fight_Club
         {
             return Hp;
         }
+
+        protected virtual void OnHitMethods(HitMethodsEventArgs e)
+        {
+            HitMethodsEventHandler handler;
+            if (e.BodyId.Equals(Blocked))
+            {
+                handler = Block;
+            }
+            else
+            {
+                Hp -= (int)e.BodyId;
+                handler = Wound;
+
+                if (Hp <= 0)
+                {
+                    handler = Death;
+                }
+            }
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        public event HitMethodsEventHandler Block;
+        public event HitMethodsEventHandler Wound;
+        public event HitMethodsEventHandler Death;
     }
+
+    public class HitMethodsEventArgs : EventArgs
+    {
+        public BodyParts BodyId { get; set; }
+        public DateTime TimeHit { get; set; }
+    }
+
+    public delegate string HitMethodsEventHandler(Object sender, HitMethodsEventArgs e);
+
 }

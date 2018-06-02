@@ -36,8 +36,12 @@
             this.Player2NameLabel = new System.Windows.Forms.Label();
             this.Player1HPBox = new System.Windows.Forms.TextBox();
             this.Player2HPBox = new System.Windows.Forms.TextBox();
-            this.ButtonTorso = new System.Windows.Forms.Button();
+            this.LegsOpp = new System.Windows.Forms.Button();
+            this.TorsoOpp = new System.Windows.Forms.Button();
+            this.HeadOpp = new System.Windows.Forms.Button();
+            this.ButtonSettings = new System.Windows.Forms.Button();
             this.ButtonLegs = new System.Windows.Forms.Button();
+            this.ButtonTorso = new System.Windows.Forms.Button();
             this.ButtonHead = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -46,7 +50,7 @@
             this.GameLogs.FormattingEnabled = true;
             this.GameLogs.Location = new System.Drawing.Point(12, 12);
             this.GameLogs.Name = "GameLogs";
-            this.GameLogs.Size = new System.Drawing.Size(178, 381);
+            this.GameLogs.Size = new System.Drawing.Size(247, 381);
             this.GameLogs.TabIndex = 0;
             // 
             // FightButton
@@ -107,35 +111,85 @@
             this.Player2HPBox.TabIndex = 7;
             this.Player2HPBox.TextChanged += new System.EventHandler(this.Player2HPBox_TextChanged);
             // 
-            // ButtonTorso
+            // LegsOpp
             // 
-            this.ButtonTorso.Location = new System.Drawing.Point(280, 206);
-            this.ButtonTorso.Name = "ButtonTorso";
-            this.ButtonTorso.Size = new System.Drawing.Size(167, 70);
-            this.ButtonTorso.TabIndex = 9;
-            this.ButtonTorso.Text = "Torso";
-            this.ButtonTorso.UseVisualStyleBackColor = true;
-            this.ButtonTorso.Visible = false;
-            this.ButtonTorso.Click += new System.EventHandler(this.ButtonTorso_Click);
+            this.LegsOpp.BackgroundImage = global::Fight_Club.Properties.Resources.narrator_legs;
+            this.LegsOpp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.LegsOpp.Enabled = false;
+            this.LegsOpp.Location = new System.Drawing.Point(511, 201);
+            this.LegsOpp.Name = "LegsOpp";
+            this.LegsOpp.Size = new System.Drawing.Size(167, 150);
+            this.LegsOpp.TabIndex = 14;
+            this.LegsOpp.UseVisualStyleBackColor = true;
+            this.LegsOpp.Visible = false;
+            // 
+            // TorsoOpp
+            // 
+            this.TorsoOpp.BackgroundImage = global::Fight_Club.Properties.Resources.Narrator_torso;
+            this.TorsoOpp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.TorsoOpp.Enabled = false;
+            this.TorsoOpp.Location = new System.Drawing.Point(511, 124);
+            this.TorsoOpp.Name = "TorsoOpp";
+            this.TorsoOpp.Size = new System.Drawing.Size(167, 83);
+            this.TorsoOpp.TabIndex = 13;
+            this.TorsoOpp.UseVisualStyleBackColor = true;
+            this.TorsoOpp.Visible = false;
+            // 
+            // HeadOpp
+            // 
+            this.HeadOpp.BackgroundImage = global::Fight_Club.Properties.Resources.narrator_head;
+            this.HeadOpp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.HeadOpp.Enabled = false;
+            this.HeadOpp.Location = new System.Drawing.Point(511, 61);
+            this.HeadOpp.Name = "HeadOpp";
+            this.HeadOpp.Size = new System.Drawing.Size(167, 70);
+            this.HeadOpp.TabIndex = 12;
+            this.HeadOpp.UseVisualStyleBackColor = true;
+            this.HeadOpp.Visible = false;
+            // 
+            // ButtonSettings
+            // 
+            this.ButtonSettings.BackgroundImage = global::Fight_Club.Properties.Resources.w512h5121377940132185095settingsstreamline;
+            this.ButtonSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonSettings.Location = new System.Drawing.Point(782, 12);
+            this.ButtonSettings.Name = "ButtonSettings";
+            this.ButtonSettings.Size = new System.Drawing.Size(25, 25);
+            this.ButtonSettings.TabIndex = 11;
+            this.ButtonSettings.UseVisualStyleBackColor = true;
+            this.ButtonSettings.Click += new System.EventHandler(this.ButtonSettings_Click);
             // 
             // ButtonLegs
             // 
-            this.ButtonLegs.Location = new System.Drawing.Point(280, 281);
+            this.ButtonLegs.BackgroundImage = global::Fight_Club.Properties.Resources.tyler_legs;
+            this.ButtonLegs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonLegs.Location = new System.Drawing.Point(280, 201);
             this.ButtonLegs.Name = "ButtonLegs";
-            this.ButtonLegs.Size = new System.Drawing.Size(167, 70);
+            this.ButtonLegs.Size = new System.Drawing.Size(167, 150);
             this.ButtonLegs.TabIndex = 10;
-            this.ButtonLegs.Text = "Legs";
             this.ButtonLegs.UseVisualStyleBackColor = true;
             this.ButtonLegs.Visible = false;
             this.ButtonLegs.Click += new System.EventHandler(this.ButtonLegs_Click);
             // 
+            // ButtonTorso
+            // 
+            this.ButtonTorso.BackgroundImage = global::Fight_Club.Properties.Resources.tyler_torso;
+            this.ButtonTorso.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonTorso.Location = new System.Drawing.Point(280, 124);
+            this.ButtonTorso.Name = "ButtonTorso";
+            this.ButtonTorso.Size = new System.Drawing.Size(167, 83);
+            this.ButtonTorso.TabIndex = 9;
+            this.ButtonTorso.UseVisualStyleBackColor = true;
+            this.ButtonTorso.Visible = false;
+            this.ButtonTorso.Click += new System.EventHandler(this.ButtonTorso_Click);
+            // 
             // ButtonHead
             // 
-            this.ButtonHead.Location = new System.Drawing.Point(280, 130);
+            this.ButtonHead.BackgroundImage = global::Fight_Club.Properties.Resources.tyler_head;
+            this.ButtonHead.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonHead.Location = new System.Drawing.Point(280, 61);
             this.ButtonHead.Name = "ButtonHead";
             this.ButtonHead.Size = new System.Drawing.Size(167, 70);
             this.ButtonHead.TabIndex = 8;
-            this.ButtonHead.Text = "Head";
             this.ButtonHead.UseVisualStyleBackColor = true;
             this.ButtonHead.Visible = false;
             this.ButtonHead.Click += new System.EventHandler(this.ButtonHead_Click);
@@ -145,7 +199,12 @@
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(819, 464);
+            this.Controls.Add(this.LegsOpp);
+            this.Controls.Add(this.TorsoOpp);
+            this.Controls.Add(this.HeadOpp);
+            this.Controls.Add(this.ButtonSettings);
             this.Controls.Add(this.ButtonLegs);
             this.Controls.Add(this.ButtonTorso);
             this.Controls.Add(this.ButtonHead);
@@ -177,6 +236,10 @@
         private System.Windows.Forms.Button ButtonHead;
         private System.Windows.Forms.Button ButtonTorso;
         private System.Windows.Forms.Button ButtonLegs;
+        private System.Windows.Forms.Button ButtonSettings;
+        private System.Windows.Forms.Button HeadOpp;
+        private System.Windows.Forms.Button TorsoOpp;
+        private System.Windows.Forms.Button LegsOpp;
     }
 }
 
