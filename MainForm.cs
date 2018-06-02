@@ -173,8 +173,6 @@ namespace Fight_Club
             TorsoOpp.Visible = false;
             LegsOpp.Visible = false;
 
-            FightButton.Text = "Revenge!";
-
             return GetAttackedPlayer();
         }
 
@@ -195,9 +193,20 @@ namespace Fight_Club
 
         private void Start_Fight(object sender, EventArgs e)
         {
-            ReadAllSettings();
+            if (!FightButton.Text.Equals("Revenge!"))
+            {
+                InitializeEvents();
 
-            InitializeEvents();
+                FightButton.Text = "Revenge!";
+            }
+            else 
+            {
+                RoundCount = 0;
+
+                GameLogs.Items.Clear();
+            }
+
+            ReadAllSettings();
 
             Player1NameLabel.Text = FirstPlayer.GetPlayerName();
             Player2NameLabel.Text = SecondPlayer.GetPlayerName();
