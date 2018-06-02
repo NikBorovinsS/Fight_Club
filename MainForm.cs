@@ -34,7 +34,6 @@ namespace Fight_Club
 
             FirstPlayer = new Player();
             SecondPlayer = new Player();
-            //PlayAmbient();
 
             RoundCount = 0;
         }
@@ -57,14 +56,6 @@ namespace Fight_Club
         private string GetTimeNow()
         {
             return DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString() + ":" + DateTime.Now.Second.ToString();
-        }
-
-        private void PlayAmbient()
-        {
-            WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
-
-            wplayer.URL = @"F:\ISD Initiative Program\Fight_Club\whatisfightclub.mp3";
-            wplayer.controls.play();
         }
 
         public string LogForBlock(Object sender, HitMethodsEventArgs e)
