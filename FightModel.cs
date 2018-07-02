@@ -33,6 +33,17 @@ namespace Fight_Club
         void StartFight();
         void EndOfFight();
         void ReadAllSettings();
+        void SetFighterBlock(HitMethodsEventHandler block);
+        void SetFighterWound(HitMethodsEventHandler wound);
+        void SetFighterDeath(HitMethodsEventHandler death);
+
+        int RoundCounter { get; set; }
+        int PlayerHP { get; set; }
+        string PlayerName { get; set; }
+        int NPC_HP { get; set; }
+        string NPC_Name { get; set; }
+
+        int maxHP { get; set; }
     }
 
     public class FightModel : IFightModel
@@ -40,11 +51,15 @@ namespace Fight_Club
         public Player UserCharacter;
         public NPC ComputerCharacter;
 
-        public int maxHP;
+        public int maxHP
+        {
+            get;
+            set;
+        }
 
         public event ModelHandler<FightModel> changed;
 
-        public int RoundCount;
+        public int _RoundCount;
 
         public FightModel()
         {
@@ -53,16 +68,13 @@ namespace Fight_Club
             ComputerCharacter = new NPC();
 
             ReadAllSettings();
-
-            changed.Invoke(this, new ModelEventArgs(UserCharacter.HP, UserCharacter.Name));
-            changed.Invoke(this, new ModelEventArgs(ComputerCharacter.HP, ComputerCharacter.Name));
         }
 
         public void CalculateHit(BodyParts bodyPart)
         {
-            ++RoundCount;
+            ++RoundCounter;
 
-            if (RoundCount % 2 != 0)
+            if (RoundCounter % 2 != 0)
             {
                 ComputerCharacter.SetBlock();
 
@@ -76,7 +88,7 @@ namespace Fight_Club
 
         public void StartFight()
         {
-            RoundCount = 0;
+            RoundCounter = 0;
         }
 
         public void EndOfFight() { }
@@ -115,9 +127,59 @@ namespace Fight_Club
             }
         }
 
+        public void SetFighterBlock(HitMethodsEventHandler block)
+        {
+            UserCharacter.SetBlockEvent(block);
+            ComputerCharacter.SetBlockEvent(block);
+        }
+
+        public void SetFighterWound(HitMethodsEventHandler wound)
+        {
+            UserCharacter.SetWoundEvent(wound);
+            ComputerCharacter.SetWoundEvent(wound);
+        }
+
+        public void SetFighterDeath(HitMethodsEventHandler death)
+        {
+            UserCharacter.SetDeathEvent(death);
+            ComputerCharacter.SetDeathEvent(death);
+        }
+
         public void attach(IModelObserver imo)
         {
             changed += new ModelHandler<FightModel>(imo.hpChanged);
+        }
+
+        public int RoundCounter
+        {
+            get { return _RoundCount; }
+            set { _RoundCount = value; }
+        }
+
+        public int PlayerHP
+        {
+            get { return UserCharacter.HP; }
+            set { UserCharacter.HP = value; }
+        }
+
+        public string PlayerName
+        {
+            get { return UserCharacter.Name; }
+
+            set { UserCharacter.Name = value; }
+        }
+
+        public int NPC_HP
+        {
+            get { return ComputerCharacter.HP; }
+            set { ComputerCharacter.HP = value; }
+        }
+
+        public string NPC_Name
+        {
+            get { return ComputerCharacter.Name; }
+
+            set { ComputerCharacter.Name = value; }
         }
     }
 }

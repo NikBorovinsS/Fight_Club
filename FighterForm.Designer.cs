@@ -38,13 +38,14 @@
             // 
             // HpBar
             // 
-            this.HpBar.Location = new System.Drawing.Point(85, 237);
+            this.HpBar.Location = new System.Drawing.Point(51, 237);
             this.HpBar.Name = "HpBar";
-            this.HpBar.Size = new System.Drawing.Size(100, 23);
+            this.HpBar.Size = new System.Drawing.Size(176, 23);
             this.HpBar.TabIndex = 0;
             // 
             // HpBox
             // 
+            this.HpBox.Enabled = false;
             this.HpBox.Location = new System.Drawing.Point(85, 267);
             this.HpBox.Name = "HpBox";
             this.HpBox.Size = new System.Drawing.Size(100, 20);

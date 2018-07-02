@@ -9,7 +9,9 @@ namespace Fight_Club
     public interface IFighterController
     {
         void SetBodyPart(BodyParts BP);
-        void SetHp(int v);
+        void SetHp(int hp);
+        void SetName(string Name);
+        void setMAX_HP(int max_hp);
     }
 
     public class FighterController: IFighterController
@@ -25,10 +27,21 @@ namespace Fight_Club
             FView.setController(this);
         }
 
-        public void SetHp(int v)
+        public void SetHp(int hp)
         {
-            FView.changeHP(v);
+            FView.changeHP(hp);
         }
+
+        public void SetName(string name)
+        {
+            FView.changeName(name);
+        }
+
+        public void setMAX_HP(int max_hp)
+        {
+            FView.setHPBar(max_hp);
+        }
+
         public void SetBodyPart(BodyParts ChoosedPart)
         {
             FCParent.controller.InitHit(ChoosedPart);

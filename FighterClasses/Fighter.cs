@@ -54,6 +54,7 @@ namespace Fight_Club
             else
             {
                 HP -= (int)e.BodyId;
+                e.CurrHP = HP;
                 handler = Wound;
 
                 if (HP <= 0)
@@ -66,12 +67,28 @@ namespace Fight_Club
                 handler(this, e);
             }
         }
+
+        public void SetBlockEvent(HitMethodsEventHandler block)
+        {
+            this.Block = block;
+        }
+        public void SetWoundEvent(HitMethodsEventHandler wound)
+        {
+            this.Wound = wound;
+        }
+        public void SetDeathEvent(HitMethodsEventHandler death)
+        {
+            this.Death = death;
+        }
     }
 
     public class HitMethodsEventArgs : EventArgs
     {
         public BodyParts BodyId { get; set; }
         public DateTime TimeHit { get; set; }
+        public string FighterName { get; set; }
+        public int RoundCount { get; set; }
+        public int CurrHP { get; set; }
     }
 
     public delegate string HitMethodsEventHandler(Object sender, HitMethodsEventArgs e);

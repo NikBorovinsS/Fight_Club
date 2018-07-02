@@ -61,13 +61,14 @@
       <DependentUpon>FighterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FightModel.cs" />
+    <Compile Include="ILogView.cs" />
     <Compile Include="LogForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LogForm.Designer.cs">
       <DependentUpon>LogForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LogModel.cs" />
+    <Compile Include="LogController.cs" />
     <Compile Include="MainController.cs" />
     <Compile Include="FighterView.cs" />
     <Compile Include="FighterClasses\NPC.cs" />

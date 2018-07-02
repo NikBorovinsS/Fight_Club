@@ -13,6 +13,9 @@ namespace Fight_Club
             HitMethodsEventArgs args = new HitMethodsEventArgs();
             args.BodyId = AttackedPart;
             args.TimeHit = DateTime.Now;
+            args.FighterName = this.Name;
+            args.RoundCount = 1;
+            args.CurrHP = HP;
 
             LastInputBP = AttackedPart;
 

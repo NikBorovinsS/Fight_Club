@@ -26,11 +26,19 @@ namespace Fight_Club
 
         public void changeHP(int Hp)
         {
-            HpBox.Text = Hp.ToString();
+            HpBox.Text = Hp > 0 ? Hp.ToString() : "0";
+
+            HpBar.Value = Hp > 0 ? Hp : 0;
         }
         public void changeName(string name)
         {
             NameLabel.Text = name;
+            this.Text = name;
+        }
+
+        public void setHPBar(int maxhp)
+        {
+            HpBar.Maximum = maxhp;
         }
 
         private void buttonHead_Click(object sender, EventArgs e)

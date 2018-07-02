@@ -14,12 +14,16 @@ namespace Fight_Club
         {
             randomizer = new Random();
         }
+        
 
         public override void GetHit(BodyParts AttackedPart)
         {
             HitMethodsEventArgs args = new HitMethodsEventArgs();
             args.BodyId = AttackedPart;
             args.TimeHit = DateTime.Now;
+            args.FighterName = this.Name;
+            args.RoundCount = 0;
+            args.CurrHP = HP;
 
             LastInputBP = AttackedPart;
 

@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Fight_Club
 {
-    public partial class LogForm : Form
+    public partial class LogForm : Form, ILogView
     {
         public LogForm()
         {
             InitializeComponent();
+        }
+
+        public void AddLog(string log)
+        {
+            LogBox.Items.Add(log);
         }
     }
 }

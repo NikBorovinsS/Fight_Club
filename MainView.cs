@@ -22,9 +22,14 @@ namespace Fight_Club
         event ViewHandler<IMainView> changed;
         void setController(IMainController cont);
 
-        void showSettings();
-        void showLogs();
         void showFighters();
         void showWinner();
+        void showFighterChanges(int hp, string name, int round);
+        void setPlayer(int hp, string name);
+        void setNPC(int hp, string name);
+        LogForm GetLogForm();
+        void setMaxHp(int hp);
+
+        void ReverseFighter();
     }
 }

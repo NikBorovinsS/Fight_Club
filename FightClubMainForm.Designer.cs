@@ -30,7 +30,6 @@
         {
             this.buttonStart = new System.Windows.Forms.Button();
             this.SettingsButton = new System.Windows.Forms.Button();
-            this.LogsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonStart
@@ -41,6 +40,7 @@
             this.buttonStart.TabIndex = 1;
             this.buttonStart.Text = "Fight!";
             this.buttonStart.UseVisualStyleBackColor = true;
+            this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
             // 
             // SettingsButton
             // 
@@ -51,22 +51,13 @@
             this.SettingsButton.Size = new System.Drawing.Size(34, 33);
             this.SettingsButton.TabIndex = 2;
             this.SettingsButton.UseVisualStyleBackColor = true;
-            // 
-            // LogsButton
-            // 
-            this.LogsButton.Location = new System.Drawing.Point(860, 51);
-            this.LogsButton.Name = "LogsButton";
-            this.LogsButton.Size = new System.Drawing.Size(34, 33);
-            this.LogsButton.TabIndex = 3;
-            this.LogsButton.Text = "Log";
-            this.LogsButton.UseVisualStyleBackColor = true;
+            this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
             // 
             // FightClubMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(906, 418);
-            this.Controls.Add(this.LogsButton);
             this.Controls.Add(this.SettingsButton);
             this.Controls.Add(this.buttonStart);
             this.IsMdiContainer = true;
@@ -81,6 +72,5 @@
 
         private System.Windows.Forms.Button buttonStart;
         private System.Windows.Forms.Button SettingsButton;
-        private System.Windows.Forms.Button LogsButton;
     }
 }

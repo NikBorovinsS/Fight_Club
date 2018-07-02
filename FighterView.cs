@@ -11,5 +11,6 @@ namespace Fight_Club
         void setController(IFighterController cont);
         void changeHP(int hp);
         void changeName(string name);
+        void setHPBar(int maxhp);
     }
 }
