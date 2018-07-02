@@ -63,59 +63,9 @@ namespace Fight_Club.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap narrator_head {
+        internal static System.Drawing.Bitmap tyler_stand {
             get {
-                object obj = ResourceManager.GetObject("narrator_head", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap narrator_legs {
-            get {
-                object obj = ResourceManager.GetObject("narrator_legs", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Narrator_torso {
-            get {
-                object obj = ResourceManager.GetObject("Narrator_torso", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap tyler_head {
-            get {
-                object obj = ResourceManager.GetObject("tyler_head", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap tyler_legs {
-            get {
-                object obj = ResourceManager.GetObject("tyler_legs", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap tyler_torso {
-            get {
-                object obj = ResourceManager.GetObject("tyler_torso", resourceCulture);
+                object obj = ResourceManager.GetObject("tyler_stand", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

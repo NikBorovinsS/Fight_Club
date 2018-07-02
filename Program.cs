@@ -17,7 +17,14 @@ namespace Fight_Club
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FightClubMainForm());
+            //Application.Run(new FightClubMainForm());
+
+            FightClubMainForm view = new FightClubMainForm();
+            IFightModel fmdl = new FightModel();
+
+            IMainController cnt = new MainController(view, fmdl);
+
+            Application.Run(view);
         }
     }
 }

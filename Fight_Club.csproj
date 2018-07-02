@@ -45,12 +45,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainForm.cs">
+    <Compile Include="BodyParts.cs" />
+    <Compile Include="FightClubMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="FightClubMainForm.Designer.cs">
+      <DependentUpon>FightClubMainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FighterClasses\Fighter.cs" />
+    <Compile Include="FighterController.cs" />
+    <Compile Include="FighterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FighterForm.Designer.cs">
+      <DependentUpon>FighterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FightModel.cs" />
+    <Compile Include="LogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogForm.Designer.cs">
+      <DependentUpon>LogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LogModel.cs" />
+    <Compile Include="MainController.cs" />
+    <Compile Include="FighterView.cs" />
+    <Compile Include="FighterClasses\NPC.cs" />
+    <Compile Include="FighterClasses\Player.cs" />
+    <Compile Include="MainView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -64,8 +86,14 @@
     <Compile Include="SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="FightClubMainForm.resx">
+      <DependentUpon>FightClubMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FighterForm.resx">
+      <DependentUpon>FighterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogForm.resx">
+      <DependentUpon>LogForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -102,39 +130,11 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="pic\tyler_head.png" />
+    <None Include="pic\tyler_stand.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="pic\tyler_legs.png" />
+    <None Include="pic\w512h5121377940132185095settingsstreamline.png" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="pic\tyler_torso.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="pic\tyler_head1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="w512h5121377940132185095settingsstreamline.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="pic\narrator_head.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="pic\narrator_legs.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="pic\Narrator_torso.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="narrator_head.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Narrator_torso.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="narrator_legs.png" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
