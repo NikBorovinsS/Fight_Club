@@ -40,6 +40,8 @@ namespace Fight_Club
             NPCForm = new FighterForm();
 
             GameLogs = new LogForm();
+            GameLogs.MdiParent = this;
+            GameLogs.Text = "Game Logs";
             GameLogs.Show();
 
             PlrCnt = new FighterController(PlayerForm, this);
@@ -52,7 +54,11 @@ namespace Fight_Club
 
         private void SettingsClosed(object sender, EventArgs e)
         {
-            if (SettingsForm != null) return;
+            if (SettingsForm != null)
+            {
+                this.Enabled = true;
+                return;
+            }
             if (SettingsForm.Visible)
             {
                 return;
@@ -63,6 +69,7 @@ namespace Fight_Club
                 {
                     controller.InitializeSettings();
                     setMaxHp(controller.GetMaxHp());
+                    controller.StartFight();
                 }
             }
         }
@@ -89,7 +96,34 @@ namespace Fight_Club
             setMaxHp(controller.GetMaxHp());
             controller.SetFightersCharacteristic();
         }
-        public void showWinner() { }
+        public void showWinner(HitMethodsEventArgs e) 
+        {
+            string caption;
+            string message = e.FighterName + " was defeated";
+            if (e.RoundCount == 1)
+            {
+                caption = "Did you lose that fight. Want to restart?";
+            }
+            else 
+            {
+                caption = "Congratulations! You won. May be another fight?";
+            }
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result;
+
+            result = MessageBox.Show(message, caption, buttons);
+
+            if (result == System.Windows.Forms.DialogResult.Yes)
+            {
+
+                controller.StartFight();
+
+            }
+            else
+            {
+                this.Close();
+            }
+        }
 
         public void setMaxHp(int hp)
         {
@@ -144,6 +178,7 @@ namespace Fight_Club
 
         private void SettingsButton_Click(object sender, EventArgs e)
         {
+            this.Enabled = false;
             if (SettingsForm == null)
             {
                 SettingsForm = new SettingsForm();

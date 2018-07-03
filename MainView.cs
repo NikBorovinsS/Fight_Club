@@ -23,7 +23,7 @@ namespace Fight_Club
         void setController(IMainController cont);
 
         void showFighters();
-        void showWinner();
+        void showWinner(HitMethodsEventArgs e);
         void showFighterChanges(int hp, string name, int round);
         void setPlayer(int hp, string name);
         void setNPC(int hp, string name);

@@ -19,6 +19,7 @@ namespace Fight_Club
         string GetPlayerName();
         void NextTurn();
         int GetMaxHp();
+        string ShowWinner(object sender, HitMethodsEventArgs e);
     }
 
     public class MainController: IMainController
@@ -103,6 +104,13 @@ namespace Fight_Club
             return FightMdl.maxHP;
         }
 
+        public string ShowWinner(object sender, HitMethodsEventArgs e)
+        {
+            View.showWinner(e);
+
+            return (e.FighterName + e.CurrHP.ToString());
+        }
+
         public void InitializeEvents()
         {
             this.Block += GameLogsController.LogForBlock;
@@ -112,6 +120,7 @@ namespace Fight_Club
             FightMdl.SetFighterWound(Wound);
 
             this.Death += GameLogsController.LogForDeath;
+            this.Death += this.ShowWinner;
             FightMdl.SetFighterDeath(Death);
         }
     }
